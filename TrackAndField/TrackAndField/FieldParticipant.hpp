@@ -9,14 +9,20 @@
 #ifndef FieldParticipant_hpp
 #define FieldParticipant_hpp
 
-class FieldParticipant: EventParticipant {
+class FieldParticipant: public EventParticipant {
     int distance;
     
+public:
     void setDistance(int x) {
         this->distance = x;
     }
-    
-    EventParticipant inputFromCIN() override;
+    static FieldParticipant* createFromInput();
+    static FieldParticipant* createDriverData(int driverIndex);
+    static void sortForScoring(FieldParticipant** array, int size);
+    static void sortArrayInteractive(FieldParticipant** array, int size);
+    string confirmationString() override;
+    void output() override;
+    void outputHeader() override;
 };
 
 #include <stdio.h>

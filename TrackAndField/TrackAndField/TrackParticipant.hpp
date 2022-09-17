@@ -7,14 +7,21 @@
 #include "EventParticipant.hpp"
 #ifndef TrackParticipant_hpp
 #define TrackParticipant_hpp
-class TrackParticipant: EventParticipant {
-    int seconds;
+class TrackParticipant: public EventParticipant {
+    float seconds;
     
-    void setSeconds(int x) {
+public:
+    void setSeconds(float x) {
         this->seconds = x;
     }
     
-    EventParticipant inputFromCIN() override;
+    static TrackParticipant* createFromInput();
+    static TrackParticipant* createDriverData(int driverIndex);
+    static void sortForScoring(TrackParticipant** array, int size);
+    static void sortArrayInteractive(TrackParticipant** array, int size);
+    string confirmationString();
+    void output();
+    void outputHeader();
 };
 #include <stdio.h>
 
