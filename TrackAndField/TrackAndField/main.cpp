@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
     cin >> input;
     if (input == '1' || input == '2') {
         char continueFlag = 'y';
-        int iterationIndex = -1;
+        int iterationIndex = 0;
         do {
             if (input == '1') {
                 participants[iterationIndex] = FieldParticipant::createFromInput();

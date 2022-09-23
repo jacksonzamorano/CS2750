@@ -6,8 +6,13 @@ using namespace std;
 void EventParticipant::collectFromInput() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     string name;
+    string name_upper;
     cout << "Enter participant's name: ";
     getline(cin, name);
+    name_upper = name;
+    for (int i = 0; i < name.length(); i++) {
+        name_upper[i] = toupper(name[i]);
+    }
     string team;
     cout << "Enter participant's team: ";
     getline(cin, team);
@@ -18,7 +23,7 @@ void EventParticipant::collectFromInput() {
     cout << "Enter participant's age: ";
     cin >> age;
     
-    setName(name);
+    setName(name_upper);
     setTeam(team);
     setSex(sex);
     setAge(age);

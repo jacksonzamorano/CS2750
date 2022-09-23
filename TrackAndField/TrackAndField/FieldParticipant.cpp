@@ -5,6 +5,7 @@
 //  Created by Jackson Zamorano on 9/15/22.
 //
 #include <iomanip>
+#include <string>
 #include "FieldParticipant.hpp"
 
 FieldParticipant* FieldParticipant::createFromInput() {
