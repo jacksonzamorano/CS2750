@@ -14,5 +14,9 @@ using namespace std;
 class Passenger {
 public:
     string name;
+    
+    Passenger(string n) {
+        name = n;
+    }
 };
 #endif /* Passenger_hpp */

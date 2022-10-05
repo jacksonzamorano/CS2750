@@ -10,6 +10,7 @@ int mainMenu();
 void runLoop();
 void manageFlightLoop();
 void printAllManifests();
+void fillDriverData();
 DoubleLinkedList<Flight>* flights = new DoubleLinkedList<Flight>;
 
 int main(int argc, const char * argv[]) {
@@ -19,13 +20,13 @@ int main(int argc, const char * argv[]) {
 
 void runLoop() {
     int option = mainMenu();
-    while (option < 3) {
+    while (option < 4) {
         if (option == 1) {
             manageFlightLoop();
         } else if (option == 2) {
             printAllManifests();
         } else if (option == 3) {
-            
+            fillDriverData();
         }
         option = mainMenu();
     }
@@ -57,8 +58,7 @@ void manageFlightLoop() {
             cout << "Type the name of the passenger to add to flight " << flightNumber << ": ";
             cin.ignore(1000, '\n');
             getline(cin, name);
-            Passenger* p = new Passenger;
-            p->name = name;
+            Passenger* p = new Passenger(name);
             data->passengers->insertHead(p);
             data->passengers->sort([] (const Passenger& a, const Passenger& b) {
                 return a.name < b.name;
@@ -116,6 +116,50 @@ void printAllManifests() {
         cout << endl;
     });
     cout << endl << endl;
+}
+
+void fillDriverData() {
+    cout << endl << endl << "Adding flight driver data..." << endl;
+    cout << "Created flight 2430" << endl;
+    Flight* f2430 = new Flight;
+    f2430->flightNumber = 2430;
+    f2430->passengers->insertHead(new Passenger("Dale Hamilton"));
+    f2430->passengers->insertHead(new Passenger("Leslie Hamilton"));
+    f2430->passengers->insertHead(new Passenger("Jonathan Hamilton"));
+    f2430->passengers->insertHead(new Passenger("Nicholas Hamilton"));
+    f2430->passengers->insertHead(new Passenger("Annalisa Hamilton"));
+    f2430->passengers->sort([] (const Passenger& a, const Passenger& b) {
+        return a.name < b.name;
+    });
+    f2430->passengers->each([] (const Passenger& a) {
+        cout << "Added " << a.name << "to flight " << 2430 << endl;
+    });
+    cout << "Created flight 2515" << endl;
+    Flight* f2515 = new Flight;
+    f2515->flightNumber = 2515;
+    f2515->passengers->insertHead(new Passenger("Thor Absorka"));
+    f2515->passengers->insertHead(new Passenger("Nora Snowwisper"));
+    f2515->passengers->insertHead(new Passenger("Loki the Mutt"));
+    f2515->passengers->sort([] (const Passenger& a, const Passenger& b) {
+        return a.name < b.name;
+    });
+    f2515->passengers->each([] (const Passenger& a) {
+        cout << "Added " << a.name << " to flight " << 2430 << endl;
+    });
+    flights->insertHead(f2430);
+    flights->insertHead(f2515);
+    cout << endl << endl;
+    printAllManifests();
+    cout << "Changing Loki's flight from 2515 -> 2750..." << endl;
+    f2515->passengers->deleteWhere([] (const Passenger& a) { return a.name == "Loki the Mutt"; });
+    Flight* f2750 = new Flight;
+    f2750->flightNumber = 2750;
+    f2750->passengers->insertHead(new Passenger("Loki the Mutt"));
+    flights->insertHead(f2750);
+    cout << "Flight changed, printing manifest..." << endl;
+    printAllManifests();
+    
+    cin.ignore(1000, '\n');
 }
 
 
