@@ -10,7 +10,8 @@
 		1A1619B828EB4F1900619068 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A1619B728EB4F1900619068 /* main.cpp */; };
 		1A1619C028EB4F3000619068 /* DoubleLinkedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A1619BE28EB4F3000619068 /* DoubleLinkedList.cpp */; };
 		1A1619C328EB4FFA00619068 /* DoubleLinkedNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A1619C128EB4FFA00619068 /* DoubleLinkedNode.cpp */; };
-		1AB2EB8428EB586500C41360 /* Ticket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2EB8228EB586500C41360 /* Ticket.cpp */; };
+		1AB2EB8428EB586500C41360 /* Flight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2EB8228EB586500C41360 /* Flight.cpp */; };
+		1AEF643A28ED44C500FB19D0 /* Passenger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF643828ED44C500FB19D0 /* Passenger.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,8 +33,10 @@
 		1A1619BF28EB4F3000619068 /* DoubleLinkedList.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DoubleLinkedList.hpp; sourceTree = "<group>"; };
 		1A1619C128EB4FFA00619068 /* DoubleLinkedNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleLinkedNode.cpp; sourceTree = "<group>"; };
 		1A1619C228EB4FFA00619068 /* DoubleLinkedNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DoubleLinkedNode.hpp; sourceTree = "<group>"; };
-		1AB2EB8228EB586500C41360 /* Ticket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ticket.cpp; sourceTree = "<group>"; };
-		1AB2EB8328EB586500C41360 /* Ticket.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Ticket.hpp; sourceTree = "<group>"; };
+		1AB2EB8228EB586500C41360 /* Flight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Flight.cpp; sourceTree = "<group>"; };
+		1AB2EB8328EB586500C41360 /* Flight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Flight.hpp; sourceTree = "<group>"; };
+		1AEF643828ED44C500FB19D0 /* Passenger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Passenger.cpp; sourceTree = "<group>"; };
+		1AEF643928ED44C500FB19D0 /* Passenger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Passenger.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +74,10 @@
 				1A1619BF28EB4F3000619068 /* DoubleLinkedList.hpp */,
 				1A1619C128EB4FFA00619068 /* DoubleLinkedNode.cpp */,
 				1A1619C228EB4FFA00619068 /* DoubleLinkedNode.hpp */,
-				1AB2EB8228EB586500C41360 /* Ticket.cpp */,
-				1AB2EB8328EB586500C41360 /* Ticket.hpp */,
+				1AB2EB8228EB586500C41360 /* Flight.cpp */,
+				1AB2EB8328EB586500C41360 /* Flight.hpp */,
+				1AEF643828ED44C500FB19D0 /* Passenger.cpp */,
+				1AEF643928ED44C500FB19D0 /* Passenger.hpp */,
 			);
 			path = AirlineTicket;
 			sourceTree = "<group>";
@@ -134,10 +139,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AEF643A28ED44C500FB19D0 /* Passenger.cpp in Sources */,
 				1A1619B828EB4F1900619068 /* main.cpp in Sources */,
 				1A1619C328EB4FFA00619068 /* DoubleLinkedNode.cpp in Sources */,
 				1A1619C028EB4F3000619068 /* DoubleLinkedList.cpp in Sources */,
-				1AB2EB8428EB586500C41360 /* Ticket.cpp in Sources */,
+				1AB2EB8428EB586500C41360 /* Flight.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

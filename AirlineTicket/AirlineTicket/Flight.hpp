@@ -9,9 +9,13 @@
 #define Ticket_hpp
 
 #include <stdio.h>
+#include "DoubleLinkedList.hpp"
+#include "Passenger.hpp"
 
-class Ticket {
+class Flight {
+public:
     int flightNumber;
+    DoubleLinkedList<Passenger>* passengers = new DoubleLinkedList<Passenger>;
 };
 
 #endif /* Ticket_hpp */

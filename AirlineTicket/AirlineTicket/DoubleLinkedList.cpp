@@ -14,25 +14,12 @@ template <class T> void DoubleLinkedList<T>::insertHead(T* item) {
     }
     head = node;
 }
-
 template <class T> DoubleLinkedNode<T>* DoubleLinkedList<T>::getHead() { return head; }
 
 template <class T> T* DoubleLinkedList<T>::valueWhere(function<bool (const T&)> fn) {
     DoubleLinkedNode<T>* current = head;
     while (current != nullptr) {
         if (fn(*current->data)) {
-            if (current->prev != nullptr) {
-                DoubleLinkedNode<T>* back = current->prev;
-                // Swap the 2 main node's pointers
-                current->prev = back->prev;
-                if (back->prev == nullptr) { head = current; }
-                else { back->prev->next = current; }
-                
-                back->prev = current;
-                back->next = current->next;
-                current->next = back;
-                if (back->next != nullptr) { back->next->prev = back; }
-            }
             break;
         }
         current = current->next;
@@ -43,7 +30,6 @@ template <class T> T* DoubleLinkedList<T>::valueWhere(function<bool (const T&)> 
         return current->data;
     }
 }
-
 template <class T> int DoubleLinkedList<T>::indexWhere(function<bool (const T&)> fn) {
     DoubleLinkedNode<T>* current = head;
     int index = 0;
@@ -60,6 +46,66 @@ template <class T> int DoubleLinkedList<T>::indexWhere(function<bool (const T&)>
         return index;
     }
 }
+template <class T> void DoubleLinkedList<T>::deleteWhere(function<bool (const T&)> fn) {
+    DoubleLinkedNode<T>* current = head;
+    int index = 0;
+    while (current != nullptr) {
+        if (fn(*current->data)) {
+            break;
+        }
+        current = current->next;
+        index++;
+    }
+    if (current != nullptr) {
+        if (current->prev != nullptr && current->next != nullptr) {
+            // This is easy, we just hook up the nodes together
+            current->prev->next = current->next;
+            current->next->prev = current->prev;
+        } else if (current->prev == nullptr) {
+            // Current is at head
+            head = current->next;
+            head->prev = nullptr;
+        } else if (current->next == nullptr) {
+            // Current is at tail; simply truncate the list
+            current->prev->next = nullptr;
+        } else if (current->prev == nullptr && current->next == nullptr) {
+            // Node is only element
+            head = nullptr;
+        }
+    
+        delete current->data;
+        delete current;
+    }
+}
+template <class T> void DoubleLinkedList<T>::deleteIndex(int index) {
+    DoubleLinkedNode<T>* current = head;
+    int i = 0;
+    while (current != nullptr) {
+        if (index == 0) { break; }
+        current = current->next;
+        i++;
+    }
+    if (current != nullptr) {
+        if (current->prev != nullptr && current->next != nullptr) {
+            // This is easy, we just hook up the nodes together
+            current->prev->next = current->next;
+            current->next->prev = current->prev;
+        } else if (current->prev == nullptr) {
+            // Current is at head
+            head = current->next;
+            head->prev = nullptr;
+        } else if (current->next == nullptr) {
+            // Current is at tail; simply truncate the list
+            current->prev->next = nullptr;
+        } else if (current->prev == nullptr && current->next == nullptr) {
+            // Node is only element
+            head = nullptr;
+        }
+    
+        delete current->data;
+        delete current;
+    }
+}
 
 template <class T> void DoubleLinkedList<T>::each(function<void (const T&)> fn) {
     DoubleLinkedNode<T>* current = head;
@@ -67,4 +113,31 @@ template <class T> void DoubleLinkedList<T>::each(function<void (const T&)> fn) 
         fn(*current->data);
         current = current->next;
     }
+}
+
+template <class T> void DoubleLinkedList<T>::swapIndicies(DoubleLinkedNode<T>* a, DoubleLinkedNode<T>* b) {
+    b->prev = a->prev;
+    if (a->prev == nullptr) { head = b; }
+    else { a->prev->next = b; }
+
+    a->prev = b;
+    a->next = b->next;
+    b->next = a;
+    if (a->next != nullptr) { a->next->prev = a; }
+}
+
+template <class T> void DoubleLinkedList<T>::sort(function<bool (const T&, const T&)> fn) {
+    bool workDone = false;
+    do {
+        workDone = false;
+        DoubleLinkedNode<T>* current = head;
+        while (current != nullptr && current->next != nullptr) {
+            if (!fn(*current->data, *current->next->data)) {
+                swapIndicies(current, current->next);
+                workDone = true;
+            }
+            current = current->next;
+        }
+    } while (workDone);
+    
 }
