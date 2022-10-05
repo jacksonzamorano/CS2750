@@ -6,6 +6,8 @@ using namespace std;
 #define EventParticipant_hpp
     
 class EventParticipant {
+    
+protected:
     string name = "";
     string team = "";
     string sex = "";
@@ -14,8 +16,12 @@ class EventParticipant {
     int score = 0;
     
 public:
-    virtual EventParticipant inputFromCIN();
-    
+    void collectFromInput();
+    static void doScoring(EventParticipant** array, int size);
+    virtual string confirmationString();
+    virtual void output() = 0;
+    virtual void outputHeader() = 0;
+
     string getName() { return this->name; }
     string getTeam() { return this->team; }
     string getSex() { return this->sex; }
