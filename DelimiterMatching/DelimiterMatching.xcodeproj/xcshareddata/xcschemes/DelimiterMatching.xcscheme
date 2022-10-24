@@ -58,7 +58,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/Test\ Files/bad1.cpp "
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/Test\ Files/bad2.cpp "
@@ -73,8 +73,12 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/Test\ Files/output.txt"
+            argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/DelimiterMatching/main.cpp"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/Test\ Files/output.txt"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
