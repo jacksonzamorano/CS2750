@@ -4,7 +4,6 @@
 #include "DelimiterNode.hpp"
 #include "DelimiterStack.hpp"
 
-
 // Helper functions to determine whether character opens
 // a block.
 bool is_regular_delimiter(char currentc) {
@@ -58,6 +57,7 @@ int main(int argc, const char * argv[]) {
         cout << "! Could not open the file :(" << endl;
         return 1;
     }
+    cout << "\"" << endl;
     // Variables to keep track of current data in the loop.
     // last_c and current_c allow us to double-buffer
     // read characters.
@@ -75,15 +75,14 @@ int main(int argc, const char * argv[]) {
         bool is_in_char_string_zone = c_value == "\"" || c_value == "'";
         bool is_in_inline_comment_zone = c_value == "//";
         bool is_in_large_comment_zone = c_value == "/*";
-        
         if (is_in_char_string_zone) {
             // If string closes opened string/char
             if (is_char_string_delimiter(current_c)) {
                 string dlmtr;
                 dlmtr += current_c;
-                // Make sure that the quotes are the same (i.e., ' and '
+                // Make sure that the quotes are the same i.e., ' and '
                 // should match but " and ' should not.
-                if (dlmtr == c_value) {
+                if (dlmtr == c_value && last_c != '\\') {
                     delete delimiters->pop();
                 }
             }
@@ -97,6 +96,7 @@ int main(int argc, const char * argv[]) {
             if (is_regular_delimiter(current_c)) {
                 string dlmtr;
                 dlmtr += current_c;
+                cout << "Line " << line_count << ": ";
                 delimiters->push(dlmtr);
             } else if (is_comment_delimiter(last_c, current_c)) {
                 string dlmtr;
@@ -114,6 +114,7 @@ int main(int argc, const char * argv[]) {
                 delimiters->push(dlmtr);
             } else if (is_ending_delimiter(last_c, current_c)) {
                 if (delimiter_ends(last_c, current_c, delimiters->read())) {
+                    cout << "Line " << line_count << ": ";
                     delete delimiters->pop();
                 } else {
                     string dlmtr;
