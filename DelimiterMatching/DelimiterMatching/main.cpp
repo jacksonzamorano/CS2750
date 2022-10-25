@@ -57,16 +57,17 @@ int main(int argc, const char * argv[]) {
         cout << "! Could not open the file :(" << endl;
         return 1;
     }
-    cout << "\"" << endl;
     // Variables to keep track of current data in the loop.
-    // last_c and current_c allow us to double-buffer
+    // last_last_c, last_c, and current_c allow us to triple-buffer
     // read characters.
     int line_count = 1;
     int char_count = 0;
+    char last_last_c = 0;
     char last_c = 0;
     char current_c = 0;
     while (!filestream.eof()) {
         char_count += 1;
+        last_last_c = last_c;
         last_c = current_c;
         current_c = filestream.get();
         string c_value = delimiters->read();
@@ -82,7 +83,7 @@ int main(int argc, const char * argv[]) {
                 dlmtr += current_c;
                 // Make sure that the quotes are the same i.e., ' and '
                 // should match but " and ' should not.
-                if (dlmtr == c_value && last_c != '\\') {
+                if (dlmtr == c_value && (last_c != '\\' || (last_last_c == '\\' && last_c == '\\'))) {
                     delete delimiters->pop();
                 }
             }
@@ -96,7 +97,6 @@ int main(int argc, const char * argv[]) {
             if (is_regular_delimiter(current_c)) {
                 string dlmtr;
                 dlmtr += current_c;
-                cout << "Line " << line_count << ": ";
                 delimiters->push(dlmtr);
             } else if (is_comment_delimiter(last_c, current_c)) {
                 string dlmtr;
@@ -114,11 +114,10 @@ int main(int argc, const char * argv[]) {
                 delimiters->push(dlmtr);
             } else if (is_ending_delimiter(last_c, current_c)) {
                 if (delimiter_ends(last_c, current_c, delimiters->read())) {
-                    cout << "Line " << line_count << ": ";
                     delete delimiters->pop();
                 } else {
                     string dlmtr;
-//                    if (last_c == '*' && current_c == '/') { dlmtr += last_c; }
+                    if (last_c == '*' && current_c == '/') { dlmtr += last_c; }
                     dlmtr += current_c;
                     if (has_output_file) {
                         output_data += "Error at ";

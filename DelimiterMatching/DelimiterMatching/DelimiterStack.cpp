@@ -17,14 +17,12 @@ DelimiterNode* DelimiterStack::pop()  {
     DelimiterNode* popped = top;
     top = top->getNext();
     count--;
-    cout << "Popping " << popped->getDelimiter() << endl;
     return popped;
 }
 void DelimiterStack::push(string s)  {
     DelimiterNode* n = new DelimiterNode;
     n->setDelimiter(s);
     n->setNext(top);
-    cout << "Pushing " << s << endl;
     top = n;
     count++;
 }
