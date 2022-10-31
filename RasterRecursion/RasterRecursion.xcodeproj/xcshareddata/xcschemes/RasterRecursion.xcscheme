@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1A8F5CDE28F8FE4900ED3B46"
-               BuildableName = "DelimiterMatching"
-               BlueprintName = "DelimiterMatching"
-               ReferencedContainer = "container:DelimiterMatching.xcodeproj">
+               BlueprintIdentifier = "1AD753F1290F2F25004CD832"
+               BuildableName = "RasterRecursion"
+               BlueprintName = "RasterRecursion"
+               ReferencedContainer = "container:RasterRecursion.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,40 +45,24 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A8F5CDE28F8FE4900ED3B46"
-            BuildableName = "DelimiterMatching"
-            BlueprintName = "DelimiterMatching"
-            ReferencedContainer = "container:DelimiterMatching.xcodeproj">
+            BlueprintIdentifier = "1AD753F1290F2F25004CD832"
+            BuildableName = "RasterRecursion"
+            BlueprintName = "RasterRecursion"
+            ReferencedContainer = "container:RasterRecursion.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/Test\ Files/good1.cpp "
+            argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test01.dat&quot;"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/Test\ Files/bad1.cpp "
+            argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test02.dat&quot;"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/Test\ Files/bad2.cpp "
+            argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test03.dat&quot;"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/Test\ Files/Raster2Freq.cpp "
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/Test\ Files/Poly2Raster.cpp "
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/DelimiterMatching/main.cpp"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/jacksonzamorano/Developer/NNU/CS2750/DelimiterMatching/Test\ Files/output.txt"
-            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
@@ -92,10 +76,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A8F5CDE28F8FE4900ED3B46"
-            BuildableName = "DelimiterMatching"
-            BlueprintName = "DelimiterMatching"
-            ReferencedContainer = "container:DelimiterMatching.xcodeproj">
+            BlueprintIdentifier = "1AD753F1290F2F25004CD832"
+            BuildableName = "RasterRecursion"
+            BlueprintName = "RasterRecursion"
+            ReferencedContainer = "container:RasterRecursion.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
