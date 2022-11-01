@@ -6,11 +6,11 @@ using namespace std;
 void RasterMap::create(int r_c, int c_c) {
     rows = r_c;
     columns = c_c;
-    data = new vector<vector<RasterMapData>*>;
+    data = new vector<vector<RasterMapData*>*>;
     for (int i = 0; i < rows; i++) {
-        data->push_back(new vector<RasterMapData>());
+        data->push_back(new vector<RasterMapData*>());
         for (int j = 0; j < columns; j++) {
-            RasterMapData v;
+            RasterMapData* v = new RasterMapData;
             data->at(i)->push_back(v);
         }
     }
@@ -19,16 +19,16 @@ void RasterMap::create(int r_c, int c_c) {
 void RasterMap::output() {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            cout << data->at(i)->at(j).value << " ";
+            cout << data->at(i)->at(j)->output_value << " ";
         }
         cout << endl;
     }
 }
 
-void RasterMap::each(function<void (const int &, const int &, const RasterMapData &)> h) {
+void RasterMap::each(function<void (const int &, const int &, const RasterMapData* )> h) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            h(i, j, get(i, j));
+            h(i, j, get_ref(i, j));
         }
     }
 }

@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <unistd.h>
 #include "RasterMap.hpp"
 #include "RasterMapPoint.hpp"
 
@@ -9,12 +10,20 @@ using namespace std;
 
 const char K_MATCH_SQUARE = 't';
 
-char map_int_to_char(int i) {
+string format_number(int& i) {
+    string output_string;
     if (i < 10) {
-        return i + 48;
+        // Number is a digit long, center it
+        output_string += " ";
+        output_string += to_string(i);
+        output_string += " ";
+    } else if (i < 100) {
+        output_string += " ";
+        output_string += to_string(i);
     } else {
-        return i + 55;
+        output_string += to_string(i);
     }
+    return output_string;
 }
 
 void add_output_data(string& output, string lbl, string data) {
@@ -43,16 +52,16 @@ void get_size_data(ifstream& file_stream, int& rc, int& cc) {
     else if (seek_mode == 'c') { cc = stoi(current_data); }
 }
 
-void spread_data(RasterMap* rm, RasterMapPoint& rp, vector<RasterMapPoint>* rmps) {
+void spread_data(RasterMap* rm, RasterMapPoint& rp, vector<RasterMapPoint*>* rmps) {
     int min_x = 0;
     int max_x = rm->get_rows() - 1;
     int min_y = 0;
     int max_y = rm->get_columns() - 1;
     
-    RasterMapData cr = rm->get(rp);
+    RasterMapData* cr = rm->get_ref(rp.x, rp.y);
     rm->set_seen(rp);
-    if (!cr.is_seen && cr.value == K_MATCH_SQUARE) {
-        rmps->push_back(rp);
+    if (!cr->is_seen && cr->input_value == K_MATCH_SQUARE) {
+        rmps->push_back(&rp);
     } else {
         return;
     }
@@ -83,14 +92,14 @@ void spread_data(RasterMap* rm, RasterMapPoint& rp, vector<RasterMapPoint>* rmps
     }
 }
 
-void create_area_graph(RasterMap* rm, RasterMapPoint rp, int map_value_count) {
-    vector<RasterMapPoint>* matched_points = new vector<RasterMapPoint>();
+void create_area_graph(RasterMap* rm, RasterMapPoint& rp, int& map_value_count) {
+    vector<RasterMapPoint*>* matched_points = new vector<RasterMapPoint*>();
     spread_data(rm, rp, matched_points);
     
     unsigned long output_size = matched_points->size();
     for (int i = 0; i < output_size; i++) {
-        RasterMapPoint rpd = matched_points->at(i);
-        rm->set_value(rpd, map_int_to_char(map_value_count));
+        RasterMapPoint* rpd = matched_points->at(i);
+        rm->set_output_value(*rpd, format_number(map_value_count));
     }
     
     delete matched_points;
@@ -120,10 +129,11 @@ int main(int argc, const char * argv[]) {
     int row_count = 0;
     int column_count = 0;
     RasterMap* input_map = new RasterMap;
-    
+    sleep(1);
     get_size_data(input_stream, row_count, column_count);
+    sleep(1);
     input_map->create(row_count, column_count);
-    
+    sleep(1);
     int ri = 0;
     int ci = 0;
     char current_data;
@@ -133,21 +143,19 @@ int main(int argc, const char * argv[]) {
             ri++;
             ci = 0;
         } else if (current_data != ' ' && current_data != '\r' && current_data != '\xff') {
-            input_map->set_value(ri, ci, current_data);
+            input_map->set_input_value(ri, ci, current_data);
             ci++;
         }
     }
         
     int map_count = 0;
-    input_map->each([input_map, &map_count](int x, int y, RasterMapData d) {
+    input_map->each([&input_map, &map_count](int x, int y, const RasterMapData* d) {
         RasterMapPoint rp;
         rp.x = x;
         rp.y = y;
-        if (d.value == K_MATCH_SQUARE) {
+        if (d->input_value == K_MATCH_SQUARE && !d->is_seen) {
             map_count++;
             create_area_graph(input_map, rp, map_count);
-        } else if (d.value == 'g') {
-            input_map->set_value(rp, '0');
         }
     });
     
