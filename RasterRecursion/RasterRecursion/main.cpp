@@ -58,7 +58,7 @@ void spread_data(RasterMap* rm, RasterMapPoint& rp, vector<RasterMapPoint*>* rmp
     int min_y = 0;
     int max_y = rm->get_columns() - 1;
     
-    RasterMapData* cr = rm->get_ref(rp.x, rp.y);
+    RasterMapData* cr = rm->get_ref(rp);
     rm->set_seen(rp);
     if (!cr->is_seen && cr->input_value == K_MATCH_SQUARE) {
         rmps->push_back(&rp);

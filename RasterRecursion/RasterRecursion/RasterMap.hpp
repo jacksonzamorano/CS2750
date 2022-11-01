@@ -32,6 +32,7 @@ public:
     RasterMapData* get_ref(int r, int c) {
         return data->at(r)->at(c);
     }
+    RasterMapData* get_ref(RasterMapPoint rp) { return get_ref(rp.x, rp.y); }
     RasterMapData get(RasterMapPoint rp) { return get(rp.x, rp.y); }
     void set_input_value(int r, int c, char d) {
         data->at(r)->at(c)->input_value = d;
