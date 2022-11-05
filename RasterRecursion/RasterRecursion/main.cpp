@@ -52,17 +52,18 @@ void get_size_data(ifstream& file_stream, int& rc, int& cc) {
     else if (seek_mode == 'c') { cc = stoi(current_data); }
 }
 
-void spread_data(RasterMap* rm, RasterMapPoint& rp, vector<RasterMapPoint*>* rmps) {
+void spread_data(RasterMap* rm, RasterMapPoint& rp, vector<RasterMapPoint>* rmps) {
     int min_x = 0;
     int max_x = rm->get_rows() - 1;
     int min_y = 0;
     int max_y = rm->get_columns() - 1;
     
     RasterMapData* cr = rm->get_ref(rp);
-    rm->set_seen(rp);
     if (!cr->is_seen && cr->input_value == K_MATCH_SQUARE) {
-        rmps->push_back(&rp);
+        rm->set_seen(rp);
+        rmps->push_back(rp);
     } else {
+        rm->set_seen(rp);
         return;
     }
     
@@ -93,13 +94,13 @@ void spread_data(RasterMap* rm, RasterMapPoint& rp, vector<RasterMapPoint*>* rmp
 }
 
 void create_area_graph(RasterMap* rm, RasterMapPoint& rp, int& map_value_count) {
-    vector<RasterMapPoint*>* matched_points = new vector<RasterMapPoint*>();
+    vector<RasterMapPoint>* matched_points = new vector<RasterMapPoint>();
     spread_data(rm, rp, matched_points);
     
     unsigned long output_size = matched_points->size();
     for (int i = 0; i < output_size; i++) {
-        RasterMapPoint* rpd = matched_points->at(i);
-        rm->set_output_value(*rpd, format_number(map_value_count));
+        RasterMapPoint rpd = matched_points->at(i);
+        rm->set_output_value(rpd, format_number(map_value_count));
     }
     
     delete matched_points;
@@ -129,11 +130,8 @@ int main(int argc, const char * argv[]) {
     int row_count = 0;
     int column_count = 0;
     RasterMap* input_map = new RasterMap;
-    sleep(1);
     get_size_data(input_stream, row_count, column_count);
-    sleep(1);
     input_map->create(row_count, column_count);
-    sleep(1);
     int ri = 0;
     int ci = 0;
     char current_data;

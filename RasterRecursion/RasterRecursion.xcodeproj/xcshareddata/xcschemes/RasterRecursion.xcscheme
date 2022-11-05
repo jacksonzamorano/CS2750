@@ -54,7 +54,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test01.dat&quot;"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test02.dat&quot;"
@@ -62,7 +62,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test03.dat&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
