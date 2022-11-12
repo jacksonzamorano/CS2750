@@ -20,7 +20,7 @@ private:
     int columns;
     vector<vector<RasterMapData*>*>* data;
 public:
-    void output();
+    string output();
     int get_rows() { return rows; }
     int get_columns() { return columns; }
     void create(int rows, int columns);

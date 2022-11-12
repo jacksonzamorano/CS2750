@@ -109,10 +109,16 @@ void create_area_graph(RasterMap* rm, RasterMapPoint& rp, int& map_value_count) 
 int main(int argc, const char * argv[]) {
     string output_data;
     string input_path;
+    string output_path;
+    bool output_to_file = false;
     
     if (argc == 2) {
         // Binary + input path
         input_path = argv[1];
+    } else if (argc == 3) {
+        input_path = argv[1];
+        output_path = argv[2];
+        output_to_file = true;
     } else {
         cout << "Invalid usage!" << endl;
         cout << "./RasterRecursion {input_path} {output_path (optional)}" << endl;
@@ -135,8 +141,10 @@ int main(int argc, const char * argv[]) {
     int ri = 0;
     int ci = 0;
     char current_data;
+    cout << "Input:" << endl;
     while (!input_stream.eof()) {
         current_data = input_stream.get();
+        cout << current_data;
         if (current_data == '\n') {
             ri++;
             ci = 0;
@@ -146,6 +154,7 @@ int main(int argc, const char * argv[]) {
         }
     }
         
+    cout << endl << endl;
     int map_count = 0;
     input_map->each([&input_map, &map_count](int x, int y, const RasterMapData* d) {
         RasterMapPoint rp;
@@ -157,7 +166,15 @@ int main(int argc, const char * argv[]) {
         }
     });
     
-    input_map->output();
+    string result_output = input_map->output();
+    if (output_to_file) {
+        ofstream output_file_stream  = ofstream(output_path);
+        output_file_stream << result_output << endl;
+        output_file_stream.close();
+    } else {
+        cout << "Output:" << endl;
+        cout << result_output;
+    }
     
     return 0;
 }

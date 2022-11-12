@@ -16,13 +16,16 @@ void RasterMap::create(int r_c, int c_c) {
     }
 }
 
-void RasterMap::output() {
+string RasterMap::output() {
+    string output = "";
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            cout << data->at(i)->at(j)->output_value << " ";
+            output += data->at(i)->at(j)->output_value;
+            output += " ";
         }
-        cout << endl;
+        output += "\n";
     }
+    return output;
 }
 
 void RasterMap::each(function<void (const int &, const int &, const RasterMapData* )> h) {
