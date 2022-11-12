@@ -8,7 +8,9 @@
 
 using namespace std;
 
-const char K_MATCH_SQUARE = 't';
+const char K_MATCH_TREE_SQUARE = 't';
+const char K_MATCH_BURN_SQUARE = 'b';
+const char K_MATCH_GRASS_SQUARE = 'g';
 
 string format_number(int& i) {
     string output_string;
@@ -59,7 +61,7 @@ void spread_data(RasterMap* rm, RasterMapPoint& rp, vector<RasterMapPoint>* rmps
     int max_y = rm->get_columns() - 1;
     
     RasterMapData* cr = rm->get_ref(rp);
-    if (!cr->is_seen && cr->input_value == K_MATCH_SQUARE) {
+    if (!cr->is_seen && cr->input_value == K_MATCH_TREE_SQUARE) {
         rm->set_seen(rp);
         rmps->push_back(rp);
     } else {
@@ -160,9 +162,13 @@ int main(int argc, const char * argv[]) {
         RasterMapPoint rp;
         rp.x = x;
         rp.y = y;
-        if (d->input_value == K_MATCH_SQUARE && !d->is_seen) {
+        if (d->input_value == K_MATCH_TREE_SQUARE && !d->is_seen) {
             map_count++;
             create_area_graph(input_map, rp, map_count);
+        }
+        else if (d->input_value == K_MATCH_BURN_SQUARE) {
+            input_map->set_seen(rp);
+            input_map->set_output_value(rp, " B ");
         }
     });
     

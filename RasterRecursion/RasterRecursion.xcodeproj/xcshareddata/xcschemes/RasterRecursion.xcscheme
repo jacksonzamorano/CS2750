@@ -58,15 +58,23 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test02.dat&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test03.dat&quot;"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;/Users/jacksonzamorano/Desktop/RRecursion.txt&quot;"
+            argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test04.dat&quot;"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test05.dat&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test06.dat&quot;"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
