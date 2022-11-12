@@ -70,11 +70,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test05.dat&quot;"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/RasterRecursion/Test Files/Test06.dat&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
