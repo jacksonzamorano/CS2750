@@ -8,7 +8,9 @@
 
 using namespace std;
 
-const char K_MATCH_SQUARE = 't';
+const char K_MATCH_TREE_SQUARE = 't';
+const char K_MATCH_BURN_SQUARE = 'b';
+const char K_MATCH_GRASS_SQUARE = 'g';
 
 string format_number(int& i) {
     string output_string;
@@ -59,7 +61,7 @@ void spread_data(RasterMap* rm, RasterMapPoint& rp, vector<RasterMapPoint>* rmps
     int max_y = rm->get_columns() - 1;
     
     RasterMapData* cr = rm->get_ref(rp);
-    if (!cr->is_seen && cr->input_value == K_MATCH_SQUARE) {
+    if (!cr->is_seen && cr->input_value == K_MATCH_TREE_SQUARE) {
         rm->set_seen(rp);
         rmps->push_back(rp);
     } else {
@@ -104,6 +106,20 @@ void create_area_graph(RasterMap* rm, RasterMapPoint& rp, int& map_value_count) 
     }
     
     delete matched_points;
+}
+
+void create_burn_border(RasterMap* rm, RasterMapPoint origin) {
+    int min_x = 0;
+    int max_x = rm->get_rows() - 1;
+    int min_y = 0;
+    int max_y = rm->get_columns() - 1;
+    
+    RasterMapPoint current_point = origin;
+    
+    if (min_x < current_point.x) {
+        
+    }
+    
 }
 
 int main(int argc, const char * argv[]) {
@@ -156,13 +172,18 @@ int main(int argc, const char * argv[]) {
         
     cout << endl << endl;
     int map_count = 0;
-    input_map->each([&input_map, &map_count](int x, int y, const RasterMapData* d) {
+    int burn_count = 0;
+    
+    vector<vector<RasterMapPoint>>* burn_zones = new vector<vector<RasterMapPoint>>;
+    input_map->each([&input_map, &map_count, &burn_count](int x, int y, const RasterMapData* d) {
         RasterMapPoint rp;
         rp.x = x;
         rp.y = y;
-        if (d->input_value == K_MATCH_SQUARE && !d->is_seen) {
+        if (d->input_value == K_MATCH_TREE_SQUARE && !d->is_seen) {
             map_count++;
             create_area_graph(input_map, rp, map_count);
+        } else if (d->input_value == K_MATCH_BURN_SQUARE) {
+            
         }
     });
     
