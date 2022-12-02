@@ -34,10 +34,18 @@ bool is_num(string test) {
 int main(int argc, const char * argv[]) {
     BinaryTree* tree = new BinaryTree();
     
+    string output_file_path = "";
+    bool has_output_file = false;
+    
     if (argc == 1) {
         // Input file not provided
         cout << "Error: Usage requires an input file." << endl;
         return -1;
+    }
+    if (argc > 2) {
+        // Capture output file data
+        has_output_file = true;
+        output_file_path = argv[2];
     }
     
     // Read and open the file.
@@ -94,7 +102,14 @@ int main(int argc, const char * argv[]) {
         temp_word = "";
     }
     
-    cout << tree->string_description();
+    if (has_output_file) {
+        ofstream stream;
+        stream.open(output_file_path);
+        stream << tree->string_description();
+        stream.close();
+    } else {
+        cout << tree->string_description();
+    }
     
     return 0;
 }

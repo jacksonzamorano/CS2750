@@ -64,6 +64,10 @@
             argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/WordList/Test Files/Psalm23.txt&quot;"
             isEnabled = "NO">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;/Users/jacksonzamorano/Desktop/Output.txt&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
