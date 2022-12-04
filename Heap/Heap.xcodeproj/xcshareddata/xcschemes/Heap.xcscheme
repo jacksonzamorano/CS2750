@@ -56,6 +56,14 @@
             argument = "&quot;/Users/jacksonzamorano/Developer/NNU/CS2750/Heap/Test Files/Test1.txt&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-a"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;/Users/jacksonzamorano/Desktop/Output.txt&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
